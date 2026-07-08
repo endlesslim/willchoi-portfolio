@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 8);
-    }, { passive: true });
+  if (nav && 'IntersectionObserver' in window) {
+    // sentinel just below the top of the page; nav gets its border once it scrolls away
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;top:8px;left:0;width:1px;height:1px;pointer-events:none;';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('scrolled', !entry.isIntersecting);
+    }).observe(sentinel);
   }
 
   const revealEls = document.querySelectorAll('.reveal');
