@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>팝캔티슈 리오더 — Will Choi</title>
+<meta name="description" content="전화·팩스로 이뤄지던 팝캔티슈 소매 거래처 재주문을 3번의 탭으로 줄인 B2B 리오더 앱 케이스 스터디.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="팝캔티슈 리오더 — Will Choi">
+<meta property="og:description" content="전화·팩스로 이뤄지던 소매 거래처 재주문을 3번의 탭으로. B2B 리오더 앱 케이스 스터디.">
+<meta property="og:image" content="assets/lifestyle/mockup-hand.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23201C24'/%3E%3Ctext x='50' y='68' font-family='Arial, sans-serif' font-size='54' font-weight='700' fill='%23F3DDD6' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav scrolled">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">Will Choi</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+ <div class="wrap">
+  <div class="case-hero-top">
+    <a href="index.html#work" class="back-link">← 전체 프로젝트</a>
+    <span class="eyebrow">Case Study 01 · Mobile UX/UI</span>
+    <h1 class="reveal">팝캔티슈 리오더</h1>
+    <p class="lede reveal">전화와 팩스로 이뤄지던 소매 거래처의 재주문을, 3번의 탭으로. 재고와 베스트셀러를 매장 사장님이 직접 보고 결정하게 만든 B2B 리오더 앱입니다.</p>
+  </div>
+
+  <div class="case-meta-bar reveal">
+    <div>
+      <div class="m-label">역할</div>
+      <div class="m-value">UX 리서치 · UI 디자인</div>
+    </div>
+    <div>
+      <div class="m-label">기간</div>
+      <div class="m-value">6주 (콘셉트)</div>
+    </div>
+    <div>
+      <div class="m-label">툴</div>
+      <div class="m-value">Figma, Notion</div>
+    </div>
+    <div>
+      <div class="m-label">플랫폼</div>
+      <div class="m-value">iOS · Android</div>
+    </div>
+  </div>
+
+  <div class="case-hero-image reveal">
+    <img src="assets/lifestyle/mockup-hand.jpg" alt="팝캔티슈 실물 제품을 들고 있는 손, 매장에서의 실제 사용 맥락">
+  </div>
+ </div>
+</header>
+
+<!-- ================= CHALLENGE ================= -->
+<section class="case-section">
+  <div class="wrap two-col">
+    <div class="case-copy reveal">
+      <span class="eyebrow">The Challenge</span>
+      <h2>재주문은 아직도<br>전화와 팩스로 이뤄집니다</h2>
+      <p>팝캔티슈는 소품샵·문구점·편의점 같은 소규모 소매 거래처에 입점해 있습니다. 문제는 그 다음부터입니다. 거래처 사장님이 재고가 떨어진 걸 알아채고, 영업일 중에 짬을 내 전화나 팩스로 주문을 넣어야 합니다.</p>
+      <p>그 사이 어떤 캐릭터가 잘 나가는지, 다음에 뭘 더 들여야 할지는 순전히 사장님의 감에 달려 있습니다. 우리 쪽에서도 거래처가 지금 재고가 얼마나 남았는지 알 방법이 없습니다.</p>
+    </div>
+    <div class="reveal">
+      <div class="finding-grid" style="grid-template-columns:1fr;">
+        <div class="finding-card">
+          <span class="f-num">01</span>
+          <h4>재주문 창구가 전화뿐</h4>
+          <p>영업시간에 맞춰 전화해야 하고, 통화 중이면 주문 자체가 밀립니다.</p>
+        </div>
+        <div class="finding-card">
+          <span class="f-num">02</span>
+          <h4>재고를 서로 모릅니다</h4>
+          <p>매장은 우리 쪽 입고 일정을, 우리는 매장의 실재고를 모른 채 주문을 주고받습니다.</p>
+        </div>
+        <div class="finding-card">
+          <span class="f-num">03</span>
+          <h4>잘 팔리는 캐릭터가 안 보임</h4>
+          <p>6종 중 무엇을 더 채워야 할지, 데이터가 아니라 기억에 의존합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OBJECTIVE ================= -->
+<section class="case-section tinted">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Objective</span>
+      <h2>목표는 세 가지였습니다</h2>
+    </div>
+    <div class="stat-row reveal">
+      <div class="stat"><b>3탭</b><span>재주문 완료까지 걸리는 탭 수</span></div>
+      <div class="stat"><b>실시간</b><span>매장 재고를 서로 같은 화면으로</span></div>
+      <div class="stat"><b>한눈에</b><span>베스트셀러 캐릭터 가시화</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section class="case-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Research</span>
+      <h2>거래처 사장님 6곳을 직접 만났습니다</h2>
+      <p>서울·경기의 소품샵·문구점·편의점 거래처 6곳을 방문해 재주문 과정을 관찰하고, 짧은 인터뷰를 진행했습니다.</p>
+    </div>
+    <blockquote class="reveal">
+      "재고 떨어진 거 보고 바로 전화하고 싶은데, 마감 때는 손님 받느라 잊어버려요. 그러다 며칠 지나서야 생각나죠."
+      <cite>— 소품샵 운영, 재직 4년차</cite>
+    </blockquote>
+    <blockquote class="reveal">
+      "라마가 잘 나가는지 펭귄이 잘 나가는지는 그냥 감이에요. 매출 찍어보는 게 아니라 어제 뭐 많이 팔렸나 떠올리는 거죠."
+      <cite>— 편의점 발주 담당</cite>
+    </blockquote>
+
+    <div class="finding-grid reveal">
+      <div class="finding-card">
+        <span class="f-num">A</span>
+        <h4>재주문은 반복 구매</h4>
+        <p>거래처 대부분은 매번 비슷한 구성으로 재주문합니다. 새로 고르는 게 아니라 "지난번 그대로"가 핵심 니즈입니다.</p>
+      </div>
+      <div class="finding-card">
+        <span class="f-num">B</span>
+        <h4>알림이 곧 트리거</h4>
+        <p>재고가 떨어졌다는 사실을 "그 순간"에 알려주지 않으면, 발주 타이밍을 계속 놓칩니다.</p>
+      </div>
+      <div class="finding-card">
+        <span class="f-num">C</span>
+        <h4>숫자가 있어야 믿습니다</h4>
+        <p>"잘 나간다"는 말보다 실제 판매 순위를 보여주는 편이 발주 결정에 더 설득력 있었습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERSONA ================= -->
+<section class="case-section tinted">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Persona</span>
+      <h2>이 앱을 매일 열어야 할 사람</h2>
+    </div>
+    <div class="persona-card reveal">
+      <div class="persona-photo">민지네<br>문구점</div>
+      <div>
+        <h4>사장님, 43세</h4>
+        <div class="p-role">소품샵 겸 문구점 운영 · 재고 관리 담당자 1인</div>
+        <p style="font-size:15px; color:#3f3a48; max-width:56ch;">가게를 혼자 운영해 발주에 쓸 시간이 따로 없습니다. 전화가 편할 것 같지만, 실제로는 "지금 통화 어려운 순간"에 재고 부족을 알아차리는 경우가 대부분입니다.</p>
+        <div class="persona-goals">
+          <div>
+            <h5>Goals</h5>
+            <ul>
+              <li>· 재고 떨어지기 전에 미리 알고 싶다</li>
+              <li>· 매번 같은 걸 다시 시키느라 시간 쓰기 싫다</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Frustrations</h5>
+            <ul>
+              <li>· 통화 중일 때 주문 타이밍을 놓친다</li>
+              <li>· 뭐가 잘 나가는지 감으로만 판단한다</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POV & HMW ================= -->
+<section class="case-section">
+  <div class="wrap two-col">
+    <div class="case-copy reveal">
+      <span class="eyebrow">POV</span>
+      <h2>문제를 다시 정의하면</h2>
+      <blockquote style="margin-top:0;">
+        혼자 매장을 운영하는 사장님은 <b>시간을 내서 주문하는 것</b>이 아니라 <b>재고가 비는 순간을 놓치지 않는 것</b>이 필요하다. 지금의 전화 재주문은 이 타이밍을 구조적으로 놓치게 만든다.
+      </blockquote>
+    </div>
+    <div class="case-copy reveal">
+      <span class="eyebrow">How Might We</span>
+      <h2>그래서 이렇게 물었습니다</h2>
+      <p>"어떻게 하면 사장님이 재고를 확인하러 오지 않아도, 재주문이 필요한 순간 스스로 찾아오게 만들 수 있을까?"</p>
+      <p>"어떻게 하면 6종 캐릭터 중 무엇을 더 채울지 감이 아니라 숫자로 판단하게 할 수 있을까?"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IA / FLOW ================= -->
+<section class="case-section tinted">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Information Architecture</span>
+      <h2>재주문 플로우 단순화</h2>
+      <p>기존에는 재고 확인 → 전화 → 구두로 수량 전달 → 확인 문자 대기까지 4단계를 거쳤습니다. 이를 앱 안에서 끊김 없는 흐름으로 재구성했습니다.</p>
+    </div>
+    <div class="flow-row reveal">
+      <div class="flow-step">홈에서<br>재고 알림 확인</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">지난 주문<br>그대로 담기</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">수량만<br>조정</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">3탭 만에<br>주문 확정</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">배송 현황<br>실시간 추적</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WIREFRAMES ================= -->
+<section class="case-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Wireframes</span>
+      <h2>로우파이 스케치</h2>
+      <p>화면을 그리기 전, 핵심 화면 세 개의 정보 우선순위부터 낮은 해상도로 검증했습니다.</p>
+    </div>
+    <div class="wire-grid reveal">
+      <div class="wire-card">
+        <div class="wire-label">홈 — 재고 알림 중심</div>
+        <div class="wire-box short"></div>
+        <div class="wire-box tall"></div>
+        <div class="wire-box"></div>
+        <div class="wire-box short"></div>
+      </div>
+      <div class="wire-card">
+        <div class="wire-label">상품 상세 — 재고 게이지</div>
+        <div class="wire-box round"></div>
+        <div class="wire-box"></div>
+        <div class="wire-box short"></div>
+        <div class="wire-box tall"></div>
+      </div>
+      <div class="wire-card">
+        <div class="wire-label">재주문 확인 — 원클릭</div>
+        <div class="wire-box"></div>
+        <div class="wire-box"></div>
+        <div class="wire-box short"></div>
+        <div class="wire-box"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UI DESIGN — PHONE MOCKUPS ================= -->
+<section class="case-section tinted">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">UI Design</span>
+      <h2>팝캔티슈 브랜드 컬러를 그대로 담은 화면</h2>
+      <p>실제 팝캔티슈 브랜드 컬러(캐릭터별 6색)와 서체(Pretendard · Gowun Batang)를 그대로 가져와 제품과 앱이 같은 브랜드로 보이게 설계했습니다.</p>
+    </div>
+
+    <div class="phone-row reveal">
+
+      <!-- 1. 홈 -->
+      <div class="phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ph-statusbar"><span>9:41</span><span>●●●</span></div>
+            <div class="ph-topbar">
+              <div class="ph-title">안녕하세요, 민지네문구님</div>
+              <div class="ph-sub">오늘도 좋은 하루예요 ☺</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-card" style="background:var(--pc-rose-soft); margin-bottom:12px;">
+                <span class="ph-pill" style="background:var(--pc-rose-ink); color:#fff;">재고 임박</span>
+                <div style="font-weight:700; font-size:14px; margin-top:8px;">라마 2개 남았어요</div>
+                <div style="font-size:11px; color:var(--pc-ink-soft); margin:4px 0 10px;">지난 주문 그대로 다시 담을까요?</div>
+                <div class="ph-btn" style="display:inline-block;">1초 재주문</div>
+              </div>
+              <div style="font-size:11px; font-weight:700; color:var(--pc-ink-soft); margin-bottom:8px;">이번 주 베스트셀러</div>
+              <div class="ph-card ph-row" style="margin-bottom:8px;">
+                <span style="font-size:12px; font-weight:700;">🥇 Grassy Llama</span>
+                <span style="font-size:11px; color:var(--pc-ink-soft);">32개</span>
+              </div>
+              <div class="ph-card ph-row" style="margin-bottom:8px;">
+                <span style="font-size:12px; font-weight:700;">🥈 Singing Hedgehog</span>
+                <span style="font-size:11px; color:var(--pc-ink-soft);">21개</span>
+              </div>
+              <div class="ph-card ph-row">
+                <span style="font-size:12px; font-weight:700;">🥉 Joyful Dolphin</span>
+                <span style="font-size:11px; color:var(--pc-ink-soft);">17개</span>
+              </div>
+            </div>
+            <div class="ph-navbar">
+              <div class="ph-navitem active"><div class="dot" style="background:var(--pc-rose-ink);"></div>홈</div>
+              <div class="ph-navitem"><div class="dot"></div>카탈로그</div>
+              <div class="ph-navitem"><div class="dot"></div>주문</div>
+              <div class="ph-navitem"><div class="dot"></div>마이</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-caption">홈 — 재고 알림 &amp; 베스트셀러</div>
+      </div>
+
+      <!-- 2. 카탈로그 -->
+      <div class="phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ph-statusbar"><span>9:41</span><span>●●●</span></div>
+            <div class="ph-topbar">
+              <div class="ph-title">전체 상품</div>
+              <div class="ph-sub">팝캔티슈 6종</div>
+            </div>
+            <div class="ph-body" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+              <div class="ph-card" style="background:var(--pc-rose-soft); text-align:center;">
+                <img src="assets/characters/llama.png" style="width:56px; margin:0 auto 6px;">
+                <div style="font-size:11px; font-weight:700;">Grassy Llama</div>
+                <div style="font-size:10px; color:var(--pc-ink-soft);">재고 2개</div>
+              </div>
+              <div class="ph-card" style="background:var(--pc-ygreen-soft); text-align:center;">
+                <img src="assets/characters/shiba.png" style="width:56px; margin:0 auto 6px;">
+                <div style="font-size:11px; font-weight:700;">Happy Shiba</div>
+                <div style="font-size:10px; color:var(--pc-ink-soft);">재고 14개</div>
+              </div>
+              <div class="ph-card" style="background:var(--pc-sky-soft); text-align:center;">
+                <img src="assets/characters/dolphin.png" style="width:56px; margin:0 auto 6px;">
+                <div style="font-size:11px; font-weight:700;">Joyful Dolphin</div>
+                <div style="font-size:10px; color:var(--pc-ink-soft);">재고 9개</div>
+              </div>
+              <div class="ph-card" style="background:var(--pc-leaf-soft); text-align:center;">
+                <img src="assets/characters/parrot.png" style="width:56px; margin:0 auto 6px;">
+                <div style="font-size:11px; font-weight:700;">Lovely Parrot</div>
+                <div style="font-size:10px; color:var(--pc-ink-soft);">재고 11개</div>
+              </div>
+            </div>
+            <div class="ph-navbar">
+              <div class="ph-navitem"><div class="dot"></div>홈</div>
+              <div class="ph-navitem active"><div class="dot" style="background:var(--pc-rose-ink);"></div>카탈로그</div>
+              <div class="ph-navitem"><div class="dot"></div>주문</div>
+              <div class="ph-navitem"><div class="dot"></div>마이</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-caption">카탈로그 — 6종 &amp; 실시간 재고</div>
+      </div>
+
+      <!-- 3. 상품 상세 -->
+      <div class="phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ph-statusbar"><span>9:41</span><span>●●●</span></div>
+            <div class="ph-topbar">
+              <div class="ph-sub">← 뒤로</div>
+              <div class="ph-title" style="margin-top:6px;">Grassy Llama</div>
+            </div>
+            <div class="ph-body" style="text-align:center;">
+              <img src="assets/characters/llama.png" style="width:120px; margin:0 auto 10px;">
+              <div class="ph-card" style="text-align:left;">
+                <div class="ph-row"><span style="font-size:12px; font-weight:700;">내 매장 재고</span><span style="font-size:12px; color:var(--pc-rose-ink); font-weight:700;">2 / 30</span></div>
+                <div style="background:var(--pc-line); border-radius:8px; height:8px; margin-top:8px; overflow:hidden;">
+                  <div style="width:7%; background:var(--pc-rose-ink); height:100%;"></div>
+                </div>
+              </div>
+              <div class="ph-card ph-row" style="margin-top:10px;">
+                <span style="font-size:12px; font-weight:700;">수량</span>
+                <span style="font-size:12px;">− &nbsp; 20 &nbsp; +</span>
+              </div>
+              <div class="ph-btn" style="margin-top:14px; width:100%;">재주문 담기</div>
+            </div>
+            <div class="ph-navbar">
+              <div class="ph-navitem"><div class="dot"></div>홈</div>
+              <div class="ph-navitem active"><div class="dot" style="background:var(--pc-rose-ink);"></div>카탈로그</div>
+              <div class="ph-navitem"><div class="dot"></div>주문</div>
+              <div class="ph-navitem"><div class="dot"></div>마이</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-caption">상품 상세 — 재고 게이지</div>
+      </div>
+
+      <!-- 4. 재주문 확인 -->
+      <div class="phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ph-statusbar"><span>9:41</span><span>●●●</span></div>
+            <div class="ph-topbar">
+              <div class="ph-title">주문 확인</div>
+              <div class="ph-sub">지난 주문 그대로 담았어요</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-card ph-row" style="margin-bottom:8px;">
+                <span style="font-size:12px; font-weight:700;">Grassy Llama × 20</span>
+                <span style="font-size:12px;">240,000원</span>
+              </div>
+              <div class="ph-card ph-row" style="margin-bottom:8px;">
+                <span style="font-size:12px; font-weight:700;">Singing Hedgehog × 10</span>
+                <span style="font-size:12px;">120,000원</span>
+              </div>
+              <div class="ph-card ph-row" style="margin-bottom:14px;">
+                <span style="font-size:12px; font-weight:700;">Joyful Dolphin × 10</span>
+                <span style="font-size:12px;">120,000원</span>
+              </div>
+              <div class="ph-row" style="padding:0 4px;">
+                <span style="font-size:13px; font-weight:700;">합계</span>
+                <span style="font-size:14px; font-weight:700; color:var(--pc-rose-ink);">480,000원</span>
+              </div>
+              <div class="ph-btn" style="margin-top:14px; width:100%;">3탭 만에 주문 확정</div>
+            </div>
+            <div class="ph-navbar">
+              <div class="ph-navitem"><div class="dot"></div>홈</div>
+              <div class="ph-navitem"><div class="dot"></div>카탈로그</div>
+              <div class="ph-navitem active"><div class="dot" style="background:var(--pc-rose-ink);"></div>주문</div>
+              <div class="ph-navitem"><div class="dot"></div>마이</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-caption">재주문 확인 — 원클릭 담기</div>
+      </div>
+
+      <!-- 5. 실시간 재고 현황 -->
+      <div class="phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ph-statusbar"><span>9:41</span><span>●●●</span></div>
+            <div class="ph-topbar">
+              <div class="ph-title">내 매장 재고</div>
+              <div class="ph-sub">6종 실시간 현황</div>
+            </div>
+            <div class="ph-body">
+              <div style="font-size:11px; font-weight:700; margin-bottom:6px;">Grassy Llama</div>
+              <div style="background:var(--pc-line); border-radius:8px; height:10px; margin-bottom:12px; overflow:hidden;"><div style="width:7%; background:var(--pc-rose-ink); height:100%;"></div></div>
+              <div style="font-size:11px; font-weight:700; margin-bottom:6px;">Happy Shiba</div>
+              <div style="background:var(--pc-line); border-radius:8px; height:10px; margin-bottom:12px; overflow:hidden;"><div style="width:46%; background:var(--pc-ygreen-ink); height:100%;"></div></div>
+              <div style="font-size:11px; font-weight:700; margin-bottom:6px;">Joyful Dolphin</div>
+              <div style="background:var(--pc-line); border-radius:8px; height:10px; margin-bottom:12px; overflow:hidden;"><div style="width:30%; background:var(--pc-sky-ink); height:100%;"></div></div>
+              <div style="font-size:11px; font-weight:700; margin-bottom:6px;">Lovely Parrot</div>
+              <div style="background:var(--pc-line); border-radius:8px; height:10px; overflow:hidden;"><div style="width:36%; background:var(--pc-leaf-ink); height:100%;"></div></div>
+            </div>
+            <div class="ph-navbar">
+              <div class="ph-navitem"><div class="dot"></div>홈</div>
+              <div class="ph-navitem"><div class="dot"></div>카탈로그</div>
+              <div class="ph-navitem"><div class="dot"></div>주문</div>
+              <div class="ph-navitem active"><div class="dot" style="background:var(--pc-rose-ink);"></div>마이</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-caption">재고 현황 — 캐릭터별 실시간 게이지</div>
+      </div>
+
+      <!-- 6. 배송 추적 -->
+      <div class="phone">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="ph-statusbar"><span>9:41</span><span>●●●</span></div>
+            <div class="ph-topbar">
+              <div class="ph-title">주문 내역</div>
+              <div class="ph-sub">배송 현황을 실시간으로</div>
+            </div>
+            <div class="ph-body">
+              <div class="ph-card" style="margin-bottom:10px;">
+                <div class="ph-row">
+                  <span style="font-size:12px; font-weight:700;">7월 3주 주문</span>
+                  <span class="ph-pill" style="background:var(--pc-leaf-soft); color:var(--pc-leaf-ink);">배송중</span>
+                </div>
+                <div style="font-size:10.5px; color:var(--pc-ink-soft); margin-top:6px;">480,000원 · 라마 외 2종</div>
+              </div>
+              <div class="ph-card">
+                <div class="ph-row">
+                  <span style="font-size:12px; font-weight:700;">7월 1주 주문</span>
+                  <span class="ph-pill" style="background:#EFEAE0; color:var(--pc-ink-soft);">배송완료</span>
+                </div>
+                <div style="font-size:10.5px; color:var(--pc-ink-soft); margin-top:6px;">360,000원 · 시바 외 1종</div>
+              </div>
+            </div>
+            <div class="ph-navbar">
+              <div class="ph-navitem"><div class="dot"></div>홈</div>
+              <div class="ph-navitem"><div class="dot"></div>카탈로그</div>
+              <div class="ph-navitem active"><div class="dot" style="background:var(--pc-rose-ink);"></div>주문</div>
+              <div class="ph-navitem"><div class="dot"></div>마이</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-caption">주문 내역 &amp; 배송 추적</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= USABILITY TESTING ================= -->
+<section class="case-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Usability Testing</span>
+      <h2>거래처 6곳과 함께 검증했습니다</h2>
+      <p>실제 거래처 사장님 6명에게 프로토타입으로 "재고 확인 후 재주문 완료하기" 태스크를 수행하도록 했습니다.</p>
+    </div>
+    <div class="test-grid reveal">
+      <div class="test-card">
+        <div class="t-task">Task 1</div>
+        <h4>재고 알림 확인 후 재주문 완료</h4>
+        <p>6명 중 5명이 별도 안내 없이 "1초 재주문" 버튼을 바로 찾아 눌렀습니다. 나머지 1명은 홈 화면의 배지 색이 눈에 띄지 않는다고 피드백했고, 이후 배지 색을 브랜드 로즈 컬러로 더 진하게 조정했습니다.</p>
+        <div class="t-metric">
+          <div><b>5 / 6</b><span>가이드 없이 성공</span></div>
+          <div><b>38초</b><span>평균 소요 시간</span></div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="t-task">Task 2</div>
+        <h4>어떤 캐릭터가 잘 나가는지 파악하기</h4>
+        <p>홈 화면의 베스트셀러 랭킹만으로 6명 전원이 "다음에 뭘 더 채워야 할지" 바로 답했습니다. "감이 아니라 숫자로 보니 마음이 편하다"는 반응이 공통적이었습니다.</p>
+        <div class="t-metric">
+          <div><b>6 / 6</b><span>즉시 응답</span></div>
+          <div><b>0건</b><span>추가 설명 필요</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONCLUSION ================= -->
+<section class="case-section tinted">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Conclusion</span>
+      <h2>다음 단계</h2>
+      <p>이 프로젝트는 콘셉트 단계이며, 아래 세 가지를 다음 스프린트의 우선순위로 두었습니다.</p>
+    </div>
+    <div class="next-grid reveal">
+      <div class="next-card">
+        <span class="n-num">01</span>
+        <h4>알림 타이밍 고도화</h4>
+        <p>매장별 판매 속도를 학습해, 재고가 완전히 바닥나기 전 최적 시점에 알림을 보내는 로직 설계.</p>
+      </div>
+      <div class="next-card">
+        <span class="n-num">02</span>
+        <h4>배송 실사용 연동</h4>
+        <p>실제 택배사 API와 연동한 배송 추적으로, 지금은 목업인 배송 상태를 실데이터로 교체.</p>
+      </div>
+      <div class="next-card">
+        <span class="n-num">03</span>
+        <h4>거래처 확대 테스트</h4>
+        <p>6곳에서 검증한 프로토타입을 30곳 규모로 확장해 파일럿 운영.</p>
+      </div>
+    </div>
+
+    <div class="case-cta reveal">
+      <h3>이 프로젝트에 대해 더 이야기하고 싶다면</h3>
+      <p>리서치 과정, 화면 설계 의도, 다음 스텝에 대해 편하게 이야기 나눌 수 있습니다.</p>
+      <a href="index.html#contact" class="btn btn-primary" style="background:#fff; color:#111;">연락하기 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <h2>다른 프로젝트도<br>궁금하다면.</h2>
+      <div class="footer-contact">
+        <a href="mailto:eddien@naver.com">eddien@naver.com</a>
+        <a href="tel:01063119981">010-6311-9981</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Will Choi</span>
+      <a href="index.html">← 홈으로</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
