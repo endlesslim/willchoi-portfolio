@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SellPort Fulfillment | 크로스보더 셀러를 위한 멀티채널 통합 풀필먼트</title>
+    <meta
+      name="description"
+      content="쿠팡·스마트스토어·카페24·쇼피·아마존을 단일 재고로. 당일출고 99.2%, 실시간 재고 추적까지. 셀링에만 집중하세요 — 입고·보관·출고·CS 반품은 셀포트가 책임집니다."
+    />
+    <meta property="og:title" content="SellPort Fulfillment — 국경 없는 셀링, 흔들림 없는 물류" />
+    <meta
+      property="og:description"
+      content="크로스보더·역직구 셀러 전용 멀티채널 통합 풀필먼트. 1분 견적 요청 시 영업일 1시간 내 회신."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Pretendard (한글 가독성) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // 브랜드 컬러/폰트/라운드 등록 — 디자인 스펙 토큰을 그대로 매핑
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                50: "#F4F7FC",
+                100: "#E8EDF7",
+                500: "#2747A8",
+                600: "#1E3A8A",
+                700: "#15306B",
+                800: "#0F2350",
+                900: "#0B1B3B",
+              },
+              gold: {
+                100: "#F6EEDA",
+                400: "#D9B86A",
+                500: "#C8A24B",
+                600: "#A8842F",
+              },
+              ink: { 700: "#334155", 900: "#0F172A" },
+            },
+            fontFamily: {
+              sans: ["Pretendard", "-apple-system", "Noto Sans KR", "sans-serif"],
+            },
+            borderRadius: { "2xl": "16px", "3xl": "24px" },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body class="bg-white text-ink-700 antialiased" id="top">
+    <!-- 스킵 링크 (접근성) -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-navy-900 focus:text-white focus:rounded-lg"
+      >본문 바로가기</a
+    >
+
+    <!-- ===================== 0. STICKY HEADER ===================== -->
+    <header
+      data-nav
+      class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-transparent [&.is-scrolled]:bg-white [&.is-scrolled]:border-navy-100 [&.is-scrolled]:shadow-[0_1px_2px_rgba(11,27,59,0.06)]"
+    >
+      <nav class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+        <a href="#top" class="flex items-center gap-2 font-extrabold text-navy-900 text-lg">
+          <span class="w-8 h-8 rounded-lg bg-navy-900 flex items-center justify-center">
+            <span class="w-3 h-3 bg-gold-500 rotate-45"></span>
+          </span>
+          SellPort
+        </a>
+
+        <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-ink-700">
+          <li><a href="#service" class="hover:text-navy-600 transition-colors">서비스</a></li>
+          <li><a href="#channels" class="hover:text-navy-600 transition-colors">연동</a></li>
+          <li><a href="#trust" class="hover:text-navy-600 transition-colors">안심요소</a></li>
+          <li><a href="#reviews" class="hover:text-navy-600 transition-colors">후기</a></li>
+        </ul>
+
+        <div class="flex items-center gap-2">
+          <a href="#quote" class="btn btn-primary btn-sm md:btn-md">무료 견적받기</a>
+          <!-- 모바일 메뉴 토글 -->
+          <button
+            type="button"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="메뉴 열기"
+            class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-navy-900 hover:bg-navy-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- 모바일 드롭다운 메뉴 -->
+      <div id="mobile-menu" data-mobile-menu class="hidden md:hidden border-t border-navy-100 bg-white">
+        <ul class="px-5 py-3 space-y-1 text-sm font-medium text-ink-700">
+          <li><a href="#service" class="block py-2.5 hover:text-navy-600">서비스</a></li>
+          <li><a href="#channels" class="block py-2.5 hover:text-navy-600">연동</a></li>
+          <li><a href="#trust" class="block py-2.5 hover:text-navy-600">안심요소</a></li>
+          <li><a href="#reviews" class="block py-2.5 hover:text-navy-600">후기</a></li>
+          <li><a href="#quote" class="block py-2.5 text-navy-600 font-semibold">무료 견적받기 →</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ===================== 1. HERO (풀블리드 영상 배경) ===================== -->
+      <section class="relative bg-navy-900 text-white overflow-hidden">
+        <!-- 배경 영상: 히어로 전체를 꽉 채움. 이미지 poster 폴백 -->
+        <div class="absolute inset-0" aria-hidden="true">
+          <video
+            class="w-full h-full object-cover"
+            poster="images/px_29454379.jpg"
+            autoplay muted loop playsinline preload="metadata"
+          >
+            <source src="assets/hero-warehouse.mp4" type="video/mp4" />
+            <img src="images/px_29454379.jpg" alt="" class="w-full h-full object-cover" />
+          </video>
+          <!-- 가독성 스크림: 좌→우 진하게 + 상하 비네팅 -->
+          <div class="absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-900/75 to-navy-900/40"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/10 to-navy-900/55"></div>
+        </div>
+
+        <div class="relative max-w-6xl mx-auto px-5 md:px-8 pt-28 pb-14 md:pt-36 md:pb-20">
+          <div class="min-h-[60vh] md:min-h-[66vh] flex flex-col justify-center">
+            <!-- 라이브 배지 -->
+            <span class="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full bg-navy-900/55 ring-1 ring-white/15 backdrop-blur-sm text-gold-400 text-xs font-medium mb-6">
+              <span class="live-dot" aria-hidden="true"></span>
+              크로스보더·역직구 셀러 전용 풀필먼트 · 인천 GDC 운영 중
+            </span>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-[-0.02em] kr max-w-3xl drop-shadow-[0_2px_16px_rgba(0,0,0,.45)]">
+              국경 없는 셀링,<br />
+              <span class="text-gold-400">흔들림 없는 물류</span>
+            </h1>
+
+            <p class="mt-6 text-base md:text-lg leading-relaxed text-[#DCE4F1] kr max-w-xl drop-shadow-[0_1px_8px_rgba(0,0,0,.4)]">
+              쿠팡·스마트스토어·쇼피·아마존을 단일 재고로 묶어 입고·보관·당일출고·CS 반품까지
+              셀포트가 대신합니다.
+            </p>
+
+            <div class="mt-9 flex flex-col sm:flex-row gap-3 md:gap-4">
+              <!-- 1차 CTA -->
+              <a href="#quote" class="btn btn-primary btn-lg w-full sm:w-auto group">
+                1분 견적 요청
+                <svg class="w-5 h-5 text-gold-400 transition-transform group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <!-- 2차 CTA -->
+              <a href="#service" class="btn btn-lg w-full sm:w-auto border border-white/40 text-white hover:bg-white/10 backdrop-blur-sm">서비스 자세히</a>
+            </div>
+          </div>
+
+          <!-- 숫자 신뢰지표 4종 (카운트업) -->
+          <div
+            class="mt-12 md:mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-6 md:gap-y-0 md:divide-x md:divide-white/10 border-t border-white/10 pt-10"
+          >
+            <!-- 당일출고율 -->
+            <div class="flex flex-col items-center text-center px-2 md:px-4">
+              <div class="num font-extrabold text-4xl md:text-6xl text-gold-500 leading-none">
+                <span data-countup data-target="99.2" data-decimals="1">0</span><span class="text-2xl md:text-4xl align-top">%</span>
+              </div>
+              <div class="mt-2 text-sm md:text-base text-[#C7D2E8] kr">당일출고율</div>
+              <span class="mt-3 block w-8 h-0.5 bg-gold-500/60 rounded-full"></span>
+            </div>
+            <!-- 평균 입고 소요 -->
+            <div class="flex flex-col items-center text-center px-2 md:px-4">
+              <div class="num font-extrabold text-4xl md:text-6xl text-gold-500 leading-none">
+                <span data-countup data-target="1.2" data-decimals="1">0</span><span class="text-2xl md:text-4xl align-top">일</span>
+              </div>
+              <div class="mt-2 text-sm md:text-base text-[#C7D2E8] kr">평균 입고 소요</div>
+              <span class="mt-3 block w-8 h-0.5 bg-gold-500/60 rounded-full"></span>
+            </div>
+            <!-- 오배송률 -->
+            <div class="flex flex-col items-center text-center px-2 md:px-4">
+              <div class="num font-extrabold text-4xl md:text-6xl text-gold-500 leading-none">
+                <span data-countup data-target="0.04" data-decimals="2">0</span><span class="text-2xl md:text-4xl align-top">%</span>
+              </div>
+              <div class="mt-2 text-sm md:text-base text-[#C7D2E8] kr">오배송률</div>
+              <span class="mt-3 block w-8 h-0.5 bg-gold-500/60 rounded-full"></span>
+            </div>
+            <!-- 누적 처리 물동량 -->
+            <div class="flex flex-col items-center text-center px-2 md:px-4">
+              <div class="num font-extrabold text-4xl md:text-6xl text-gold-500 leading-none">
+                <span data-countup data-target="1800" data-decimals="0">0</span><span class="text-2xl md:text-4xl align-top">만</span>
+              </div>
+              <div class="mt-2 text-sm md:text-base text-[#C7D2E8] kr">누적 처리 물동량(건)</div>
+              <span class="mt-3 block w-8 h-0.5 bg-gold-500/60 rounded-full"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 2. 연동 채널 ===================== -->
+      <section id="channels" class="bg-white py-14 md:py-24">
+        <div class="max-w-6xl mx-auto px-5 md:px-8 text-center">
+          <p class="reveal text-sm font-semibold text-navy-600 tracking-wide">MULTI-CHANNEL</p>
+          <h2 class="reveal mt-2 text-2xl md:text-4xl font-bold text-navy-900 kr">
+            여러 판매 채널을 <span class="text-navy-600">단일 재고</span>로 통합 운영
+          </h2>
+          <p class="reveal mt-3 text-base text-ink-700 leading-relaxed kr max-w-2xl mx-auto">
+            채널마다 따로 관리하던 재고를 하나로. 주문은 자동 수집되고, 출고는 한 곳에서 처리됩니다.
+          </p>
+
+          <!-- 모노크롬 그레이 처리 — 차분하게, hover 시에만 살짝 또렷 -->
+          <div class="reveal mt-9 flex flex-wrap justify-center items-center gap-x-7 gap-y-4 md:gap-x-10">
+            <span class="inline-flex items-center gap-2 text-[#94A3B8] font-semibold text-base md:text-lg tracking-tight grayscale opacity-70 hover:opacity-100 transition-opacity">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span> 쿠팡
+            </span>
+            <span class="inline-flex items-center gap-2 text-[#94A3B8] font-semibold text-base md:text-lg tracking-tight grayscale opacity-70 hover:opacity-100 transition-opacity">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span> 스마트스토어
+            </span>
+            <span class="inline-flex items-center gap-2 text-[#94A3B8] font-semibold text-base md:text-lg tracking-tight grayscale opacity-70 hover:opacity-100 transition-opacity">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span> 카페24
+            </span>
+            <span class="inline-flex items-center gap-2 text-[#94A3B8] font-semibold text-base md:text-lg tracking-tight grayscale opacity-70 hover:opacity-100 transition-opacity">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span> Shopee
+            </span>
+            <span class="inline-flex items-center gap-2 text-[#94A3B8] font-semibold text-base md:text-lg tracking-tight grayscale opacity-70 hover:opacity-100 transition-opacity">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span> Amazon
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 2.5 현장/운영 (에디토리얼: 좌 실사 + 우 카피) ===================== -->
+      <section class="bg-white pb-4 md:pb-10">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+            <!-- 좌: 작업자 현장 사진 -->
+            <figure class="reveal relative rounded-3xl overflow-hidden shadow-card-hover ring-1 ring-navy-100 order-1">
+              <div class="relative aspect-[4/3]">
+                <img
+                  src="images/px_31043129.jpg"
+                  alt="네이비 유니폼과 안전헬멧을 착용한 작업자 두 명이 물류센터에서 박스를 핸들링하는 현장 모습"
+                  width="1200" height="900"
+                  loading="lazy" decoding="async"
+                  class="photo"
+                />
+                <div class="photo-overlay-b absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                <p class="photo-caption absolute left-4 bottom-4 right-4 kr">입고 검수부터 출고까지, 사람이 직접 검수하는 현장</p>
+              </div>
+            </figure>
+
+            <!-- 우: 카피 (역직구 셀러 페인포인트 구체화) -->
+            <div class="reveal order-2">
+              <div class="flex items-center gap-3 text-navy-600">
+                <span class="text-sm font-semibold tracking-wide">ON-SITE OPERATIONS</span>
+                <span class="rule-line flex-1"></span>
+              </div>
+              <h2 class="mt-3 text-2xl md:text-4xl font-bold text-navy-900 kr leading-snug">
+                채널마다 다른 물류 규격,<br class="hidden sm:block" />
+                현장에서 미리 잡습니다
+              </h2>
+              <p class="mt-4 text-base text-ink-700 leading-relaxed kr">
+                아마존 FBA 박스 라벨, 쇼피 SLS 송장, 쿠팡 로켓그로스 입고 규격 —
+                채널마다 다른 기준을 입고 검수 단계에서 표준화해, 반려와 재작업을 줄입니다.
+              </p>
+              <ul class="mt-6 space-y-4">
+                <li class="flex items-start gap-3 kr">
+                  <span class="mt-0.5 flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-gold-100">
+                    <svg class="w-4.5 h-4.5 text-gold-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="width:1.1rem;height:1.1rem"><path d="M4 10l3 3 9-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span><strong class="text-navy-900 font-semibold">채널별 송장·라벨 규격 표준화</strong><br /><span class="text-sm text-[#475569]">입고 시 채널 규격 검수 후 등록해 출고 반려를 차단</span></span>
+                </li>
+                <li class="flex items-start gap-3 kr">
+                  <span class="mt-0.5 flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-gold-100">
+                    <svg class="text-gold-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="width:1.1rem;height:1.1rem"><path d="M3 6h14M6 6V4h8v2M5 6l1 11h8l1-11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span><strong class="text-navy-900 font-semibold">합포장·번들 구성 대응</strong><br /><span class="text-sm text-[#475569]">동일 주문 다품목 합포장, 사은품·세트 구성 자동 처리</span></span>
+                </li>
+                <li class="flex items-start gap-3 kr">
+                  <span class="mt-0.5 flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-gold-100">
+                    <svg class="text-gold-600" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="width:1.1rem;height:1.1rem"><path d="M16 4l-8 8-4-4M16 4v6M16 4h-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <span><strong class="text-navy-900 font-semibold">반품 회수·검수·재입고</strong><br /><span class="text-sm text-[#475569]">반품 상품 상태 검수 후 정상품만 재입고, 손실 가시화</span></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 3. 서비스/프로세스 ===================== -->
+      <section id="service" class="bg-navy-50 py-14 md:py-24">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div class="text-center max-w-2xl mx-auto">
+            <p class="reveal text-sm font-semibold text-navy-600 tracking-wide">PROCESS</p>
+            <h2 class="reveal mt-2 text-2xl md:text-4xl font-bold text-navy-900 kr">
+              입고부터 반품 CS까지, 끊김 없는 6단계
+            </h2>
+            <p class="reveal mt-3 text-base text-ink-700 leading-relaxed kr">
+              상품이 도착하는 순간부터 고객 손에 닿고 돌아오는 반품까지, 전 과정을 한 시스템에서 추적합니다.
+            </p>
+          </div>
+
+          <ol class="reveal mt-12 grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-4">
+            <!-- 01 -->
+            <li class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-3 md:text-center">
+              <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-bold ring-2 ring-gold-500/50">01</span>
+              <div>
+                <h3 class="font-semibold text-navy-900 kr">입고 검수</h3>
+                <p class="mt-1 text-sm text-[#475569] leading-relaxed kr">수량·파손 검수 후 즉시 시스템 등록</p>
+              </div>
+            </li>
+            <!-- 02 -->
+            <li class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-3 md:text-center">
+              <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-bold ring-2 ring-gold-500/50">02</span>
+              <div>
+                <h3 class="font-semibold text-navy-900 kr">보관</h3>
+                <p class="mt-1 text-sm text-[#475569] leading-relaxed kr">로케이션 지정 보관, 실시간 재고 반영</p>
+              </div>
+            </li>
+            <!-- 03 -->
+            <li class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-3 md:text-center">
+              <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-bold ring-2 ring-gold-500/50">03</span>
+              <div>
+                <h3 class="font-semibold text-navy-900 kr">주문 수집</h3>
+                <p class="mt-1 text-sm text-[#475569] leading-relaxed kr">멀티채널 주문 자동 통합 수집</p>
+              </div>
+            </li>
+            <!-- 04 -->
+            <li class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-3 md:text-center">
+              <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-bold ring-2 ring-gold-500/50">04</span>
+              <div>
+                <h3 class="font-semibold text-navy-900 kr">당일 피킹·패킹</h3>
+                <p class="mt-1 text-sm text-[#475569] leading-relaxed kr">바코드 검수로 오출고 차단, 당일 처리</p>
+              </div>
+            </li>
+            <!-- 05 -->
+            <li class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-3 md:text-center">
+              <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-bold ring-2 ring-gold-500/50">05</span>
+              <div>
+                <h3 class="font-semibold text-navy-900 kr">출고</h3>
+                <p class="mt-1 text-sm text-[#475569] leading-relaxed kr">택배사 연동 송장 자동 발행·발송</p>
+              </div>
+            </li>
+            <!-- 06 -->
+            <li class="relative flex md:flex-col items-start md:items-center gap-4 md:gap-3 md:text-center">
+              <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-navy-900 text-white font-bold ring-2 ring-gold-500/50">06</span>
+              <div>
+                <h3 class="font-semibold text-navy-900 kr">반품·CS</h3>
+                <p class="mt-1 text-sm text-[#475569] leading-relaxed kr">회수·검수·재입고 및 고객 응대 대행</p>
+              </div>
+            </li>
+          </ol>
+
+          <!-- 프로세스 실사 3컷 스트립 (피킹/이송/입출고) -->
+          <div class="reveal mt-12 grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            <figure class="relative rounded-2xl overflow-hidden ring-1 ring-navy-100 shadow-card">
+              <div class="relative aspect-[4/3]">
+                <img src="images/px_7857523.jpg" alt="작업자가 박스에 상품을 포장하는 손 클로즈업"
+                  width="600" height="450" loading="lazy" decoding="async" class="photo" />
+                <div class="photo-overlay-b absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                <p class="photo-caption absolute left-3 bottom-3 kr">바코드 검수 포장</p>
+              </div>
+            </figure>
+            <figure class="relative rounded-2xl overflow-hidden ring-1 ring-navy-100 shadow-card">
+              <div class="relative aspect-[4/3]">
+                <img src="images/px_4487361.jpg" alt="창고 통로에서 박스를 옮기는 작업자 두 명"
+                  width="600" height="450" loading="lazy" decoding="async" class="photo" />
+                <div class="photo-overlay-b absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                <p class="photo-caption absolute left-3 bottom-3 kr">로케이션 피킹·이송</p>
+              </div>
+            </figure>
+            <figure class="relative rounded-2xl overflow-hidden ring-1 ring-navy-100 shadow-card col-span-2 md:col-span-1">
+              <div class="relative aspect-[16/9] md:aspect-[4/3]">
+                <img src="images/px_4487382.jpg" alt="팔레트잭으로 적재 화물을 다루는 작업자"
+                  width="600" height="450" loading="lazy" decoding="async" class="photo" />
+                <div class="photo-overlay-b absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                <p class="photo-caption absolute left-3 bottom-3 kr">입·출고 팔레트 핸들링</p>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CTA 배너 (중단) ===================== -->
+      <section class="bg-white py-12 md:py-16">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div
+            class="reveal flex flex-col md:flex-row items-center justify-between gap-5 p-7 md:p-9 rounded-3xl bg-gradient-to-r from-navy-900 to-navy-700 text-white shadow-float"
+          >
+            <div class="text-center md:text-left">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 text-xs font-medium mb-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span> 영업일 1시간 내 회신
+              </span>
+              <h3 class="text-2xl md:text-3xl font-bold kr">지금 견적 요청하고, 다음 출고부터 맡기세요</h3>
+            </div>
+            <a href="#quote" class="btn btn-on-dark btn-lg w-full md:w-auto">1분 견적 요청</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 4. 안심 요소 ===================== -->
+      <section id="trust" class="bg-white pt-2 pb-14 md:pt-2 md:pb-24">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div class="text-center max-w-2xl mx-auto">
+            <p class="reveal text-sm font-semibold text-navy-600 tracking-wide">WHY CROSSVAULT</p>
+            <h2 class="reveal mt-2 text-2xl md:text-4xl font-bold text-navy-900 kr">맡기기 전에 확인하는 안심 요소</h2>
+            <p class="reveal mt-3 text-base text-ink-700 leading-relaxed kr">내 재고가 안전하게 관리되고 있다는 확신, 숫자와 시스템으로 증명합니다.</p>
+          </div>
+
+          <!-- ===== WMS 대시보드 목업 (코드로 만든 '진짜 제품' — 실시간 재고 추적) ===== -->
+          <div class="mt-12 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <!-- 우측 카피를 lg에서 좌측에, 대시보드를 우측에 배치(교차 레이아웃) -->
+            <div class="reveal lg:col-span-5 order-2 lg:order-1">
+              <div class="flex items-center gap-3 text-navy-600">
+                <span class="text-sm font-semibold tracking-wide">REAL-TIME WMS</span>
+                <span class="rule-line flex-1"></span>
+              </div>
+              <h3 class="mt-3 text-xl md:text-3xl font-bold text-navy-900 kr leading-snug">
+                내 재고를 실시간으로,<br class="hidden sm:block" />
+                화주 전용 대시보드에서
+              </h3>
+              <p class="mt-4 text-base text-ink-700 leading-relaxed kr">
+                입고·보관·출고 수량과 채널별 주문이 실시간으로 반영됩니다.
+                SKU별 가용재고, 금일 출고 현황, 안전재고 임박 알림까지
+                별도 요청 없이 직접 확인하고 CSV로 내려받을 수 있습니다.
+              </p>
+              <ul class="mt-5 space-y-2 text-sm text-[#475569] kr">
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span> 채널 통합 가용재고 · 안전재고 임박 알림</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span> 금일/주간 출고 추이 · 재고 회전 리포트</li>
+                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span> 화면 그대로 CSV·엑셀 내보내기</li>
+              </ul>
+            </div>
+
+            <!-- 대시보드 목업 패널 -->
+            <div class="reveal lg:col-span-7 order-1 lg:order-2">
+              <div class="rounded-3xl bg-navy-900 text-white shadow-float ring-1 ring-white/10 overflow-hidden">
+                <!-- 윈도우 상단바 -->
+                <div class="flex items-center gap-2 px-5 py-3 border-b border-white/10 bg-white/5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#F87171]"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#FBBF24]"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#34D399]"></span>
+                  <span class="ml-3 text-xs text-[#9FB1D4]">vault.crossvault.demo · 재고 대시보드</span>
+                  <span class="ml-auto inline-flex items-center gap-1.5 text-[11px] text-[#C7D2E8]">
+                    <span class="live-dot" aria-hidden="true"></span> LIVE
+                  </span>
+                </div>
+
+                <div class="p-5 md:p-6">
+                  <!-- KPI 4종 -->
+                  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="rounded-xl bg-white/5 border border-white/10 px-3 py-3">
+                      <div class="text-[11px] text-[#9FB1D4] kr">총 SKU</div>
+                      <div class="num text-2xl font-extrabold text-white mt-0.5">1,284</div>
+                    </div>
+                    <div class="rounded-xl bg-white/5 border border-white/10 px-3 py-3">
+                      <div class="text-[11px] text-[#9FB1D4] kr">금일 출고</div>
+                      <div class="num text-2xl font-extrabold text-gold-400 mt-0.5">3,912</div>
+                    </div>
+                    <div class="rounded-xl bg-white/5 border border-white/10 px-3 py-3">
+                      <div class="text-[11px] text-[#9FB1D4] kr">처리 대기</div>
+                      <div class="num text-2xl font-extrabold text-white mt-0.5">147</div>
+                    </div>
+                    <div class="rounded-xl bg-white/5 border border-white/10 px-3 py-3">
+                      <div class="text-[11px] text-[#9FB1D4] kr">재고 임박</div>
+                      <div class="num text-2xl font-extrabold text-[#F87171] mt-0.5">6</div>
+                    </div>
+                  </div>
+
+                  <!-- 막대 그래프(주간 출고 추이) -->
+                  <div class="mt-5 rounded-xl bg-white/5 border border-white/10 p-4">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-xs text-[#C7D2E8] kr">최근 7일 출고 추이</span>
+                      <span class="text-[11px] text-[#9FB1D4]">단위: 건</span>
+                    </div>
+                    <!-- 막대: data-wms-bar 로 진입 시 height 채움. 접근성: 표 의미는 캡션으로 -->
+                    <div class="flex items-end gap-2 md:gap-3 h-28" role="img" aria-label="최근 7일 출고 추이 막대그래프: 월 2980건, 화 3410건, 수 3120건, 목 3680건, 금 3912건, 토 2110건, 일 1740건">
+                      <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                        <div class="wms-bar is-muted" data-wms-bar style="height:0" data-h="62"></div>
+                        <span class="text-[10px] text-[#9FB1D4]">월</span>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                        <div class="wms-bar is-muted" data-wms-bar style="height:0" data-h="74"></div>
+                        <span class="text-[10px] text-[#9FB1D4]">화</span>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                        <div class="wms-bar is-muted" data-wms-bar style="height:0" data-h="66"></div>
+                        <span class="text-[10px] text-[#9FB1D4]">수</span>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                        <div class="wms-bar is-muted" data-wms-bar style="height:0" data-h="82"></div>
+                        <span class="text-[10px] text-[#9FB1D4]">목</span>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                        <div class="wms-bar" data-wms-bar style="height:0" data-h="92"></div>
+                        <span class="text-[10px] text-gold-400 font-medium">금</span>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                        <div class="wms-bar is-muted" data-wms-bar style="height:0" data-h="44"></div>
+                        <span class="text-[10px] text-[#9FB1D4]">토</span>
+                      </div>
+                      <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                        <div class="wms-bar is-muted" data-wms-bar style="height:0" data-h="36"></div>
+                        <span class="text-[10px] text-[#9FB1D4]">일</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 재고 테이블 -->
+                  <div class="mt-4 rounded-xl bg-white/5 border border-white/10 overflow-hidden">
+                    <table class="w-full text-left text-xs md:text-sm">
+                      <caption class="sr-only">SKU별 실시간 가용재고 현황 예시</caption>
+                      <thead class="text-[#9FB1D4] border-b border-white/10">
+                        <tr>
+                          <th scope="col" class="font-medium px-4 py-2.5 kr">SKU</th>
+                          <th scope="col" class="font-medium px-4 py-2.5 kr">상품</th>
+                          <th scope="col" class="font-medium px-4 py-2.5 text-right kr">가용</th>
+                          <th scope="col" class="font-medium px-4 py-2.5 text-right kr">상태</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-white/5 text-[#E2E8F0]">
+                        <tr>
+                          <td class="px-4 py-2.5 num text-[#9FB1D4]">CV-1042</td>
+                          <td class="px-4 py-2.5 kr">수분크림 50ml</td>
+                          <td class="px-4 py-2.5 text-right num">1,820</td>
+                          <td class="px-4 py-2.5 text-right"><span class="inline-block px-2 py-0.5 rounded-full bg-[#34D399]/15 text-[#34D399] text-[11px]">정상</span></td>
+                        </tr>
+                        <tr>
+                          <td class="px-4 py-2.5 num text-[#9FB1D4]">CV-2310</td>
+                          <td class="px-4 py-2.5 kr">립밤 세트(3입)</td>
+                          <td class="px-4 py-2.5 text-right num">214</td>
+                          <td class="px-4 py-2.5 text-right"><span class="inline-block px-2 py-0.5 rounded-full bg-[#FBBF24]/15 text-[#FBBF24] text-[11px]">임박</span></td>
+                        </tr>
+                        <tr>
+                          <td class="px-4 py-2.5 num text-[#9FB1D4]">CV-0788</td>
+                          <td class="px-4 py-2.5 kr">캐릭터 티슈 24p</td>
+                          <td class="px-4 py-2.5 text-right num">5,640</td>
+                          <td class="px-4 py-2.5 text-right"><span class="inline-block px-2 py-0.5 rounded-full bg-[#34D399]/15 text-[#34D399] text-[11px]">정상</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="mt-3 text-[11px] text-[#7E92BB] kr">※ 화면은 데모용 예시 데이터입니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- 창고 규모 -->
+            <div class="reveal group flex flex-col items-start p-6 rounded-2xl bg-white border border-navy-100 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold-500/40">
+              <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-gold-100">
+                <svg class="w-6 h-6 text-gold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M3 21V9l9-5 9 5v12" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-navy-900 kr">연면적 12,000㎡ · 2거점</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[#475569] kr">인천·평택 GDC 2거점 운영으로 권역별 빠른 출고와 안정적인 보관 공간을 확보합니다.</p>
+            </div>
+            <!-- CCTV 보안 -->
+            <div class="reveal group flex flex-col items-start p-6 rounded-2xl bg-white border border-navy-100 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold-500/40">
+              <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-gold-100">
+                <svg class="w-6 h-6 text-gold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M2 7l15-4 1 4-15 4-1-4z" stroke-linejoin="round" />
+                  <path d="M3 11v6a2 2 0 002 2h2m9-9v3a4 4 0 01-4 4H9" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-navy-900 kr">24시간 CCTV + 출입통제</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[#475569] kr">전 구역 CCTV 모니터링과 지정 인원 출입통제로 재고 사고를 원천 차단합니다.</p>
+            </div>
+            <!-- 실시간 재고 추적 -->
+            <div class="reveal group flex flex-col items-start p-6 rounded-2xl bg-white border border-navy-100 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold-500/40">
+              <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-gold-100">
+                <svg class="w-6 h-6 text-gold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M3 3v18h18" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7 14l3-3 3 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-navy-900 kr">실시간 재고 추적</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[#475569] kr">입고·보관·출고 수량을 실시간 대시보드로 투명하게 확인하고 내려받을 수 있습니다.</p>
+            </div>
+            <!-- 보험 -->
+            <div class="reveal group flex flex-col items-start p-6 rounded-2xl bg-white border border-navy-100 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-gold-500/40">
+              <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-gold-100">
+                <svg class="w-6 h-6 text-gold-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-navy-900 kr">물류 배상책임보험 가입</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[#475569] kr">보관·운송 중 발생할 수 있는 손해에 대비해 배상책임보험에 가입해 두었습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 4.5 전국 풀필먼트 센터 ===================== -->
+      <section class="bg-navy-900 text-white py-14 md:py-24 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <!-- 좌: 제목 + 규모 사진 -->
+            <div class="lg:col-span-5">
+              <div class="flex items-center gap-3 text-gold-400">
+                <span class="text-sm font-semibold tracking-wide">FULFILLMENT NETWORK</span>
+                <span class="rule-line flex-1"></span>
+              </div>
+              <h2 class="mt-3 text-2xl md:text-4xl font-bold kr leading-snug">
+                권역별 거점에서<br class="hidden sm:block" />
+                <span class="text-gold-400">당일 출고</span>를 만듭니다
+              </h2>
+              <p class="mt-4 text-base leading-relaxed text-[#C7D2E8] kr">
+                인천·평택·이천 3개 거점, 연면적 합산 21,000㎡. 콜드체인까지
+                품목과 채널에 맞춰 거점을 배정해 리드타임을 줄입니다.
+              </p>
+              <figure class="mt-6 relative rounded-2xl overflow-hidden ring-1 ring-white/10">
+                <div class="relative aspect-[16/10]">
+                  <img src="images/px_4483608.jpg" alt="오렌지 랙에 박스가 가득 적재된 대형 창고 내부"
+                    width="900" height="560" loading="lazy" decoding="async" class="photo" />
+                  <div class="photo-overlay-b absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                  <p class="photo-caption absolute left-4 bottom-4 right-4 kr">고단 랙 보관으로 보관 효율 극대화</p>
+                </div>
+              </figure>
+            </div>
+
+            <!-- 우: 거점 카드 3종 (구체 면적·기능) -->
+            <div class="lg:col-span-7 space-y-4">
+              <!-- 인천 GDC 1센터 -->
+              <article class="reveal flex gap-4 p-5 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-gold-500/40 transition-colors">
+                <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gold-500/15 text-gold-400 font-bold num">01</span>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h3 class="text-lg font-semibold text-white kr">인천 GDC 1센터</h3>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-[#C7D2E8]">메인 허브</span>
+                  </div>
+                  <p class="mt-1 text-sm text-[#C7D2E8] kr">연면적 <span class="num text-gold-400 font-semibold">9,900㎡</span> · 멀티채널 입출고 · 공항 인접 해외직배송 거점</p>
+                </div>
+              </article>
+              <!-- 평택 2센터 -->
+              <article class="reveal flex gap-4 p-5 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-gold-500/40 transition-colors">
+                <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gold-500/15 text-gold-400 font-bold num">02</span>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h3 class="text-lg font-semibold text-white kr">평택 2센터</h3>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-[#C7D2E8]">대용량 보관</span>
+                  </div>
+                  <p class="mt-1 text-sm text-[#C7D2E8] kr">연면적 <span class="num text-gold-400 font-semibold">7,200㎡</span> · 항만 인접 · 대량 입고/시즌 재고 분산 보관</p>
+                </div>
+              </article>
+              <!-- 이천 콜드 1센터 -->
+              <article class="reveal flex gap-4 p-5 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-gold-500/40 transition-colors">
+                <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-gold-500/15 text-gold-400 font-bold num">03</span>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h3 class="text-lg font-semibold text-white kr">이천 콜드 1센터</h3>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-[#C7D2E8]">콜드체인</span>
+                  </div>
+                  <p class="mt-1 text-sm text-[#C7D2E8] kr">연면적 <span class="num text-gold-400 font-semibold">3,900㎡</span> · 냉장·냉동 보관 · 식품/뷰티 상온 외 품목 대응</p>
+                </div>
+              </article>
+
+              <!-- 넓은 창고 실사 (규모감) -->
+              <figure class="reveal relative rounded-2xl overflow-hidden ring-1 ring-white/10 mt-2">
+                <div class="relative aspect-[16/7]">
+                  <img src="images/px_30625283.jpg" alt="카트가 놓인 넓은 창고 내부의 규모감 있는 전경"
+                    width="1000" height="438" loading="lazy" decoding="async" class="photo" />
+                  <div class="photo-overlay-l absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                  <figcaption class="absolute left-5 top-1/2 -translate-y-1/2 max-w-[60%]">
+                    <div class="num text-2xl md:text-3xl font-extrabold text-gold-400">21,000㎡</div>
+                    <div class="text-xs text-[#C7D2E8] kr mt-1">3개 거점 합산 연면적</div>
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 5. 후기 + 케이스 ===================== -->
+      <section id="reviews" class="bg-navy-50 py-14 md:py-24">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div class="text-center max-w-2xl mx-auto">
+            <p class="reveal text-sm font-semibold text-navy-600 tracking-wide">CUSTOMER VOICE</p>
+            <h2 class="reveal mt-2 text-2xl md:text-4xl font-bold text-navy-900 kr">화주가 직접 말하는 변화</h2>
+          </div>
+
+          <!-- 후기 3 -->
+          <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+            <figure class="reveal flex flex-col p-6 rounded-2xl bg-white border border-navy-100">
+              <div class="flex gap-0.5 text-gold-500" aria-label="별점 5점 만점에 5점">★★★★★</div>
+              <blockquote class="mt-3 text-base leading-relaxed text-ink-700 kr">
+                "쇼피 SLS 송장 때문에 출고가 항상 하루씩 밀렸는데, 입고 검수에서 규격을 잡아주니 리드타임이 3일에서 당일로 줄었어요. 재고 오차율도 2.1%에서 0.1%로 떨어졌습니다."
+              </blockquote>
+              <figcaption class="mt-5 flex items-center gap-3 pt-5 border-t border-navy-100">
+                <span class="flex items-center justify-center w-11 h-11 rounded-full bg-navy-900 text-gold-400 text-sm font-bold ring-1 ring-gold-500/30" aria-hidden="true">민J</span>
+                <span>
+                  <span class="block text-sm font-semibold text-navy-900">민제이커머스 · 김도윤 대표</span>
+                  <span class="block text-xs text-[#64748B] kr">뷰티 카테고리 · 쇼피 SG/MY · 월 출고 1.2만건</span>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="reveal flex flex-col p-6 rounded-2xl bg-white border border-navy-100">
+              <div class="flex gap-0.5 text-gold-500" aria-label="별점 5점 만점에 5점">★★★★★</div>
+              <blockquote class="mt-3 text-base leading-relaxed text-ink-700 kr">
+                "직접 포장하던 시절엔 밤 11시까지 송장 출력에 매달렸어요. 합포장·사은품 구성까지 맡기고 나니 포장 인력 2명을 늘리지 않고도 출고량이 2배가 됐습니다."
+              </blockquote>
+              <figcaption class="mt-5 flex items-center gap-3 pt-5 border-t border-navy-100">
+                <span class="flex items-center justify-center w-11 h-11 rounded-full bg-navy-900 text-gold-400 text-sm font-bold ring-1 ring-gold-500/30" aria-hidden="true">루F</span>
+                <span>
+                  <span class="block text-sm font-semibold text-navy-900">루미페이버 · 이서진 실장</span>
+                  <span class="block text-xs text-[#64748B] kr">패션잡화 · 스마트스토어·쿠팡 · 월 출고 7,200건</span>
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="reveal flex flex-col p-6 rounded-2xl bg-white border border-navy-100">
+              <div class="flex gap-0.5 text-gold-500" aria-label="별점 5점 만점에 5점">★★★★★</div>
+              <blockquote class="mt-3 text-base leading-relaxed text-ink-700 kr">
+                "아마존 FBA 박스 라벨·수량 규격 반려가 잦아 입고가 늘 지연됐는데, 검수 단계에서 잡아주면서 입고 반려율이 18%에서 2%로 줄었습니다. 반품 재입고도 가시화돼 손실 파악이 쉬워졌어요."
+              </blockquote>
+              <figcaption class="mt-5 flex items-center gap-3 pt-5 border-t border-navy-100">
+                <span class="flex items-center justify-center w-11 h-11 rounded-full bg-navy-900 text-gold-400 text-sm font-bold ring-1 ring-gold-500/30" aria-hidden="true">노G</span>
+                <span>
+                  <span class="block text-sm font-semibold text-navy-900">노스게이트 · 박현우 대표</span>
+                  <span class="block text-xs text-[#64748B] kr">생활·리빙 · 아마존 US FBA · 월 출고 2,500건</span>
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- 케이스 스터디 2 (수치형) -->
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+            <article class="reveal relative p-7 rounded-2xl bg-navy-900 text-white overflow-hidden shadow-card-hover">
+              <span class="absolute left-0 top-0 h-full w-1 bg-gold-500"></span>
+              <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-gold-400 text-xs font-medium">CASE 01 · 쇼피 진출 셀러</span>
+              <div class="mt-4 flex flex-wrap items-baseline gap-6">
+                <div>
+                  <div class="num text-2xl md:text-3xl font-extrabold text-gold-500">3일 → 당일</div>
+                  <div class="text-xs text-[#C7D2E8] mt-1">출고 리드타임</div>
+                </div>
+                <div>
+                  <div class="num text-2xl md:text-3xl font-extrabold text-gold-500">0.1%</div>
+                  <div class="text-xs text-[#C7D2E8] mt-1">재고 오차율</div>
+                </div>
+              </div>
+              <p class="mt-4 text-sm leading-relaxed text-[#C7D2E8] kr">멀티채널 단일재고 통합 운영으로 피킹·패킹을 자동화해, 시즌 피크에도 당일출고를 유지했습니다.</p>
+            </article>
+
+            <article class="reveal relative p-7 rounded-2xl bg-navy-900 text-white overflow-hidden shadow-card-hover">
+              <span class="absolute left-0 top-0 h-full w-1 bg-gold-500"></span>
+              <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-gold-400 text-xs font-medium">CASE 02 · 멀티채널 패션 셀러</span>
+              <div class="mt-4 flex flex-wrap items-baseline gap-6">
+                <div>
+                  <div class="num text-2xl md:text-3xl font-extrabold text-gold-500">-37%</div>
+                  <div class="text-xs text-[#C7D2E8] mt-1">월 물류 인건비</div>
+                </div>
+                <div>
+                  <div class="num text-2xl md:text-3xl font-extrabold text-gold-500">99.4%</div>
+                  <div class="text-xs text-[#C7D2E8] mt-1">정시 출고율</div>
+                </div>
+              </div>
+              <p class="mt-4 text-sm leading-relaxed text-[#C7D2E8] kr">4개 채널 주문을 단일 워크플로로 통합해, 포장 인력 증원 없이 출고량 2배 성장을 소화했습니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 6. 견적 폼 ===================== -->
+      <section id="quote" class="bg-navy-50 py-14 md:py-24">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+            <!-- 좌: 카피 + 약속 -->
+            <div class="lg:col-span-2">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-100 text-gold-600 text-xs font-medium mb-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span> 영업일 1시간 내 회신
+              </span>
+              <h2 class="text-2xl md:text-4xl font-bold text-navy-900 kr">1분이면 충분합니다,<br />무료 견적 요청</h2>
+              <p class="mt-4 text-base text-ink-700 leading-relaxed kr">
+                품목과 출고량만 알려주시면 거점·요금 구조를 포함한 맞춤 견적을 빠르게 드립니다.
+                상담은 부담 없이, 도입 결정은 천천히 하세요.
+              </p>
+              <ul class="mt-6 space-y-3 text-sm text-ink-700">
+                <li class="flex items-start gap-2 kr">
+                  <svg class="w-5 h-5 text-navy-600 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  초기 비용·약정 없이 출고 건당 합리적 단가
+                </li>
+                <li class="flex items-start gap-2 kr">
+                  <svg class="w-5 h-5 text-navy-600 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  전담 매니저가 입고 세팅까지 1:1 지원
+                </li>
+                <li class="flex items-start gap-2 kr">
+                  <svg class="w-5 h-5 text-navy-600 flex-shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  멀티채널 연동 세팅 비용 없음
+                </li>
+              </ul>
+
+              <!-- 보관 실사 (폼 좌측 허전함 보완 · 신뢰 보강) -->
+              <figure class="mt-8 relative rounded-2xl overflow-hidden ring-1 ring-navy-100 shadow-card hidden lg:block">
+                <div class="relative aspect-[16/10]">
+                  <img src="images/px_5156696.jpg" alt="선반에 정돈되어 보관된 박스들의 모습"
+                    width="640" height="400" loading="lazy" decoding="async" class="photo" />
+                  <div class="photo-overlay-l absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+                  <figcaption class="absolute left-4 bottom-4 right-4">
+                    <p class="text-sm font-semibold text-white kr">로케이션 지정 보관</p>
+                    <p class="photo-caption kr">SKU별 위치 추적으로 재고 오차 최소화</p>
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+
+            <!-- 우: 폼 패널 -->
+            <div class="lg:col-span-3">
+              <div class="bg-white rounded-3xl shadow-card-hover p-6 md:p-10 border border-navy-100">
+                <!-- 폼 -->
+                <form id="quote-form" novalidate class="transition-opacity duration-200">
+                  <!-- 서버 에러 배너 -->
+                  <div
+                    data-fail-banner
+                    role="alert"
+                    class="hidden mb-5 px-4 py-3 rounded-lg bg-[#FEF2F2] border border-[#DC2626]/30 text-[#DC2626] text-sm kr"
+                  >
+                    <span data-fail-msg>전송에 실패했습니다. 잠시 후 다시 시도해 주세요.</span>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <!-- 품목 카테고리 -->
+                    <label class="block">
+                      <span class="block mb-1.5 text-sm font-medium text-ink-700">품목 카테고리 <span class="text-[#DC2626]">*</span></span>
+                      <select name="category" class="field field-select" aria-describedby="err-category">
+                        <option value="">선택해 주세요</option>
+                        <option value="fashion">패션/잡화</option>
+                        <option value="beauty">뷰티/화장품</option>
+                        <option value="food">식품(상온)</option>
+                        <option value="living">생활/리빙</option>
+                        <option value="digital">전자/디지털</option>
+                        <option value="etc">기타</option>
+                      </select>
+                      <span id="err-category" data-error-for="category" class="error-msg" role="alert"></span>
+                    </label>
+
+                    <!-- 월 예상 출고량 -->
+                    <label class="block">
+                      <span class="block mb-1.5 text-sm font-medium text-ink-700">월 예상 출고량 <span class="text-[#DC2626]">*</span></span>
+                      <select name="volume" class="field field-select" aria-describedby="err-volume">
+                        <option value="">선택해 주세요</option>
+                        <option value="500-1k">500 ~ 1천 건</option>
+                        <option value="1k-3k">1천 ~ 3천 건</option>
+                        <option value="3k-5k">3천 ~ 5천 건</option>
+                        <option value="5k-10k">5천 ~ 1만 건</option>
+                        <option value="10k+">1만 건 이상</option>
+                      </select>
+                      <span id="err-volume" data-error-for="volume" class="error-msg" role="alert"></span>
+                    </label>
+
+                    <!-- 보관 지역 -->
+                    <label class="block sm:col-span-2">
+                      <span class="block mb-1.5 text-sm font-medium text-ink-700">주 보관 지역 <span class="text-[#DC2626]">*</span></span>
+                      <select name="region" class="field field-select" aria-describedby="err-region">
+                        <option value="">선택해 주세요</option>
+                        <option value="incheon">인천 GDC</option>
+                        <option value="pyeongtaek">평택 GDC</option>
+                        <option value="undecided">미정 · 상담 후 결정</option>
+                      </select>
+                      <span id="err-region" data-error-for="region" class="error-msg" role="alert"></span>
+                    </label>
+
+                    <!-- 담당자명 -->
+                    <label class="block sm:col-span-2">
+                      <span class="block mb-1.5 text-sm font-medium text-ink-700">담당자명 <span class="text-[#DC2626]">*</span></span>
+                      <input type="text" name="name" autocomplete="name" placeholder="홍길동" class="field" aria-describedby="err-name" />
+                      <span id="err-name" data-error-for="name" class="error-msg" role="alert"></span>
+                    </label>
+
+                    <!-- 연락처: 전화 -->
+                    <label class="block">
+                      <span class="block mb-1.5 text-sm font-medium text-ink-700">전화번호</span>
+                      <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="010-1234-5678" class="field" aria-describedby="err-contact" />
+                    </label>
+
+                    <!-- 연락처: 이메일 -->
+                    <label class="block">
+                      <span class="block mb-1.5 text-sm font-medium text-ink-700">이메일</span>
+                      <input type="email" name="email" autocomplete="email" placeholder="seller@example.com" class="field" aria-describedby="err-contact" />
+                    </label>
+
+                    <!-- 연락처 공통 에러 -->
+                    <div class="sm:col-span-2 -mt-3">
+                      <span data-error-for="contact" class="error-msg" role="alert"></span>
+                      <p class="mt-1 text-xs text-[#64748B] kr">전화번호 또는 이메일 중 하나 이상 입력해 주세요.</p>
+                    </div>
+
+                    <!-- 메모 -->
+                    <label class="block sm:col-span-2">
+                      <span class="block mb-1.5 text-sm font-medium text-ink-700">메모 <span class="text-[#94A3B8] font-normal">(선택)</span></span>
+                      <textarea name="memo" rows="3" placeholder="현재 사용 중인 채널, 출고 패턴, 궁금한 점 등을 자유롭게 남겨주세요." class="field kr"></textarea>
+                    </label>
+
+                    <!-- 동의 -->
+                    <div class="sm:col-span-2">
+                      <label class="flex items-start gap-2.5 cursor-pointer">
+                        <input type="checkbox" name="agree" class="mt-0.5 h-5 w-5 rounded accent-navy-600 flex-shrink-0" aria-describedby="err-agree" />
+                        <span class="text-sm text-[#475569] kr">
+                          <a href="#" class="text-navy-500 underline">개인정보 수집·이용</a>에 동의합니다. (견적 회신 목적, 보관 후 파기) <span class="text-[#DC2626]">*</span>
+                        </span>
+                      </label>
+                      <span data-error-for="agree" class="error-msg ml-7" role="alert"></span>
+                    </div>
+                  </div>
+
+                  <!-- 제출 -->
+                  <button type="submit" class="btn btn-primary btn-lg w-full mt-7 disabled:cursor-wait">
+                    <svg data-spinner class="hidden animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                    </svg>
+                    <span data-btn-label>견적 요청 보내기</span>
+                  </button>
+
+                  <p class="mt-3 text-center text-xs text-[#64748B] kr">제출 즉시 담당자에게 알림이 전달되며, 영업일 기준 1시간 내 회신드립니다.</p>
+                </form>
+
+                <!-- 완료 패널 (기본 숨김, 제출 성공 시 노출) -->
+                <div id="quote-success" class="hidden flex-col items-center text-center p-8 rounded-2xl bg-[#DCFCE7] border border-[#16A34A]/30 focus:outline-none" role="status" aria-live="polite">
+                  <svg class="w-12 h-12 text-[#16A34A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M8 12l3 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <h3 class="mt-3 text-xl font-bold text-navy-900 kr">견적 요청이 접수되었습니다</h3>
+                  <p class="mt-1 text-sm text-[#475569] kr">영업일 기준 1시간 내 담당자가 회신드립니다. 감사합니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 7. CTA 배너 (하단) ===================== -->
+      <section class="bg-navy-50 pb-14 md:pb-24">
+        <div class="max-w-6xl mx-auto px-5 md:px-8">
+          <div class="reveal flex flex-col md:flex-row items-center justify-between gap-5 p-7 md:p-9 rounded-3xl bg-gradient-to-r from-navy-900 to-navy-700 text-white shadow-float">
+            <div class="text-center md:text-left">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 text-gold-400 text-xs font-medium mb-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span> 영업일 1시간 내 회신
+              </span>
+              <h3 class="text-2xl md:text-3xl font-bold kr">물류 고민, 오늘 끝내세요</h3>
+              <p class="mt-2 text-sm text-[#C7D2E8] kr">상담은 무료, 도입 결정은 천천히 — 먼저 견적부터 받아보세요.</p>
+            </div>
+            <a href="#quote" class="btn btn-on-dark btn-lg w-full md:w-auto">무료 견적받기</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== 8. FOOTER ===================== -->
+    <footer class="bg-navy-900 text-[#C7D2E8]">
+      <div class="max-w-6xl mx-auto px-5 md:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- 브랜드 -->
+          <div>
+            <div class="flex items-center gap-2 font-extrabold text-white text-lg">
+              <span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                <span class="w-3 h-3 bg-gold-500 rotate-45"></span>
+              </span>
+              SellPort
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-[#9FB1D4] kr">국경 없는 셀링, 흔들림 없는 물류.<br />크로스보더 셀러를 위한 멀티채널 통합 풀필먼트.</p>
+          </div>
+
+          <!-- 회사정보 (가상) -->
+          <div class="text-sm leading-relaxed">
+            <h4 class="text-white font-semibold mb-3">회사정보</h4>
+            <ul class="space-y-1 text-[#9FB1D4]">
+              <li>상호: (주)셀포트풀필먼트 <span class="text-[#7E92BB]">(가상)</span></li>
+              <li>대표: 임데모</li>
+              <li>사업자등록번호: 000-00-00000</li>
+              <li>주소: 인천광역시 ○○구 ○○로 000 (GDC)</li>
+            </ul>
+          </div>
+
+          <!-- 연락처 -->
+          <div class="text-sm leading-relaxed">
+            <h4 class="text-white font-semibold mb-3">문의</h4>
+            <ul class="space-y-1 text-[#9FB1D4]">
+              <li>대표번호: 1500-0000</li>
+              <li>이메일: sales@crossvault.demo</li>
+              <li>운영시간: 평일 09:00 ~ 18:00</li>
+              <li class="pt-2"><a href="#quote" class="text-gold-400 hover:text-gold-500 font-medium">무료 견적 요청 →</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <p class="text-xs text-[#7E92BB]">© <span data-year>2026</span> SellPort Fulfillment. All rights reserved.</p>
+          <p class="text-xs text-[#7E92BB] kr">※ 본 페이지는 웹에이전시 영업 데모입니다. 회사정보·후기·수치는 모두 가상이며 실제와 무관합니다.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

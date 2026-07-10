@@ -662,6 +662,19 @@ blockquote cite{
   width:100%; height:100%; border-radius:28px;
   object-fit:cover; object-position:top;
 }
+
+/* tago logo identity panel */
+.tago-identity{
+  display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:center;
+  background:var(--paper); border:1px solid var(--line); border-radius:4px;
+  padding:36px 44px;
+}
+.ti-mark{display:flex; align-items:center; gap:16px;}
+.ti-word{font-size:34px; font-weight:800; letter-spacing:-.03em; color:var(--ink);}
+.ti-desc{font-size:14px; color:var(--ink-soft); max-width:56ch; line-height:1.8;}
+@media (max-width:640px){
+  .tago-identity{grid-template-columns:1fr; gap:20px; padding:28px;}
+}
 .ph-statusbar{
   height:34px; flex-shrink:0; display:flex; align-items:center; justify-content:space-between;
   padding:0 22px; font-size:11px; font-weight:700;
