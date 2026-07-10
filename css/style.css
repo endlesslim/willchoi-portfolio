@@ -378,6 +378,10 @@ section{padding:120px 0;}
 .archive-card .a-body{padding:26px 28px 30px;}
 .archive-card .a-year{font-family:var(--f-mono); font-size:11.5px; font-weight:500; color:var(--accent); letter-spacing:.06em; font-variant-numeric:tabular-nums;}
 .archive-card h4{font-size:18px; margin-top:6px;}
+.archive-card .a-logo{
+  height:34px; width:auto; margin-top:10px;
+  aspect-ratio:auto; object-fit:contain; filter:none;
+}
 .archive-card p{font-size:14px; color:var(--ink-soft); margin-top:6px;}
 .archive-card img{filter:saturate(.9) brightness(.94);}
 .archive-note{margin-top:24px; font-size:13.5px; color:var(--ink-soft);}
