@@ -355,6 +355,16 @@ section{padding:120px 0;}
   .project-card .pc-body{padding:32px 28px;}
 }
 
+.sub-label{
+  display:block;
+  font-family:var(--f-mono);
+  font-size:11.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:72px 0 22px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+
 .archive-grid{
   display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:8px;
 }
