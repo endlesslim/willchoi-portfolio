@@ -410,6 +410,12 @@ section{padding:120px 0;}
 }
 .timeline li:first-child{border-top:0;}
 .timeline .t-year{width:90px; flex-shrink:0; font-family:var(--f-mono); font-size:13px; font-weight:500; color:var(--ink-soft); font-variant-numeric:tabular-nums;}
+.tl-link{
+  font-family:var(--f-mono); font-size:12px; color:var(--accent);
+  text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px;
+  margin-left:6px; white-space:nowrap;
+}
+.tl-link:hover{color:var(--ink);}
 
 /* about: from drawing to dieline to real product */
 .proof-block{margin-top:80px; padding-top:56px; border-top:1px solid var(--line);}
